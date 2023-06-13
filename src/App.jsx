@@ -10,7 +10,7 @@ const App = () => {
     <div>
       <Alerta />
       <Buscador />
-      <Formulario />
+      <Formulario colaboradores={BaseColaboradores} />
       <Listado BaseColaboradores={BaseColaboradores} />
     </div>
   );
