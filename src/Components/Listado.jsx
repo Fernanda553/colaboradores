@@ -1,6 +1,9 @@
-import BaseColaboradores from "../BaseColaboradores";
+// Listado.jsx
+import React from 'react';
 
-const Listado = ({ BaseColaboradores }) => {
+const Listado = ({ colaboradores }) => {
+  if (!colaboradores) return null;
+
   return (
     <table className="table">
       <thead>
@@ -14,7 +17,7 @@ const Listado = ({ BaseColaboradores }) => {
         </tr>
       </thead>
       <tbody>
-        {BaseColaboradores.map((colaborador) => (
+        {colaboradores.map((colaborador) => (
           <tr key={colaborador.id}>
             <td>{colaborador.id}</td>
             <td>{colaborador.nombre}</td>
