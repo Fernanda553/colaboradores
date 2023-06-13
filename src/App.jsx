@@ -3,6 +3,7 @@ import Listado from './Components/Listado';
 import Formulario from './Components/Formulario';
 import Buscador from './Components/Buscador';
 import Alerta from './Components/Alerta';
+import BaseColaboradores from './BaseColaboradores';
 
 const App = () => {
   return (
@@ -10,7 +11,7 @@ const App = () => {
       <Alerta />
       <Buscador />
       <Formulario />
-      <Listado />
+      <Listado BaseColaboradores={BaseColaboradores} />
     </div>
   );
 };
