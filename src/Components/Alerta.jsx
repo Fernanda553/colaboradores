@@ -4,7 +4,7 @@ const Alerta = ({ alerta }) => {
   const { mensaje, tipo } = alerta;
 
   return (
-    <div className={`alert alert-${tipo}`} role="alert">
+    <div className={`mt-3 alert alert-${tipo}`} role="alert">
       {mensaje}
     </div>
   );

@@ -1,11 +1,10 @@
 // Listado.jsx
-import React from 'react';
 
 const Listado = ({ colaboradores }) => {
   if (!colaboradores) return null;
 
   return (
-    <table className="table">
+    <table className="table table-striped table-bordered">
       <thead>
         <tr>
           <th>ID</th>
@@ -20,11 +19,11 @@ const Listado = ({ colaboradores }) => {
         {colaboradores.map((colaborador) => (
           <tr key={colaborador.id}>
             <td>{colaborador.id}</td>
-            <td>{colaborador.nombre}</td>
-            <td>{colaborador.correo}</td>
-            <td>{colaborador.edad}</td>
-            <td>{colaborador.cargo}</td>
-            <td>{colaborador.telefono}</td>
+            <td className="fix-text-overflow">{colaborador.nombre}</td>
+            <td className="fix-text-overflow">{colaborador.correo}</td>
+            <td className="fix-text-overflow">{colaborador.edad}</td>
+            <td className="fix-text-overflow">{colaborador.cargo}</td>
+            <td className="fix-text-overflow">{colaborador.telefono}</td>
           </tr>
         ))}
       </tbody>
