@@ -79,7 +79,7 @@ const Formulario = ({ colaboradores, setAlerta }) => {
       onSubmit={handleSubmit}
     >
       <input
-        className="form-control"
+        className="form-control text-center"
         type="text"
         name="nombre"
         placeholder="Nombre del colaborador"
@@ -87,7 +87,7 @@ const Formulario = ({ colaboradores, setAlerta }) => {
         onChange={handleChange}
       />
       <input
-        className="form-control"
+        className="form-control text-center"
         type="text"
         name="correo"
         placeholder="Correo del colaborador"
@@ -95,7 +95,7 @@ const Formulario = ({ colaboradores, setAlerta }) => {
         onChange={handleChange}
       />
       <input
-        className="form-control"
+        className="form-control text-center"
         type="text"
         name="edad"
         placeholder="Edad del colaborador"
@@ -103,7 +103,7 @@ const Formulario = ({ colaboradores, setAlerta }) => {
         onChange={handleChange}
       />
       <input
-        className="form-control"
+        className="form-control text-center"
         type="text"
         name="cargo"
         placeholder="Cargo del colaborador"
@@ -111,14 +111,14 @@ const Formulario = ({ colaboradores, setAlerta }) => {
         onChange={handleChange}
       />
       <input
-        className="form-control"
+        className="form-control text-center"
         type="tel"
         name="telefono"
         placeholder="Teléfono del colaborador"
         value={nuevoColaborador.telefono}
         onChange={handleChange}
       />
-      <button className="btn btn-primary" type="submit">
+      <button className="btn btn-info text-black" type="submit">
         Agregar colaborador
       </button>
     </form>

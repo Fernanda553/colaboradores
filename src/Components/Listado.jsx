@@ -1,10 +1,8 @@
-// Listado.jsx
-
-const Listado = ({ colaboradores }) => {
+const Listado = ({ colaboradores, deleteItem }) => {
   if (!colaboradores) return null;
 
   return (
-    <table className="table table-striped table-bordered">
+    <table className="table table-striped table-bordered text-center">
       <thead>
         <tr>
           <th>ID</th>
@@ -13,6 +11,7 @@ const Listado = ({ colaboradores }) => {
           <th>Edad</th>
           <th>Cargo</th>
           <th>Teléfono</th>
+          <th>Eliminar</th>
         </tr>
       </thead>
       <tbody>
@@ -24,6 +23,12 @@ const Listado = ({ colaboradores }) => {
             <td className="fix-text-overflow">{colaborador.edad}</td>
             <td className="fix-text-overflow">{colaborador.cargo}</td>
             <td className="fix-text-overflow">{colaborador.telefono}</td>
+            <td>
+              <i
+                className="fa-solid fa-trash-can-arrow-up text-danger mx-4"
+                onClick={() => deleteItem(colaborador.id)}
+              ></i>
+            </td>
           </tr>
         ))}
       </tbody>
