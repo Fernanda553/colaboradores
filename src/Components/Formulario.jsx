@@ -3,14 +3,15 @@ import { useState } from "react";
 const EMAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 const NAME_REGEX = /^[\w\s]+ [\w\s]+$/;
 const TELEFONO_REGEX = /^\+569\d{8}$/;
+const EDAD_REGEX = /^[0-9-]+$/;
 
 const Formulario = ({ agregarColaborador, setAlerta }) => {
   const [nuevoColaborador, setNuevoColaborador] = useState({
-    nombre: "fernanda nunez",
-    correo: "fernanda.nunez55@gmail.com",
-    edad: "28",
-    cargo: "informatica",
-    telefono: "+56937586219",
+    nombre: "",
+    correo: "",
+    edad: "",
+    cargo: "",
+    telefono: "",
   });
 
   const handleChange = (e) => {
@@ -48,6 +49,14 @@ const Formulario = ({ agregarColaborador, setAlerta }) => {
     if (!EMAIL_REGEX.test(nuevoColaborador.correo)) {
       setAlerta({
         mensaje: "Ingrese un correo válido",
+        tipo: "danger",
+      });
+      return;
+    }
+
+    if (!EDAD_REGEX.test(nuevoColaborador.edad)) {
+      setAlerta({
+        mensaje: "Ingrese edad válida (ej: 28)",
         tipo: "danger",
       });
       return;
