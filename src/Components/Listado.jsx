@@ -1,8 +1,7 @@
+import Table from "react-bootstrap/Table";
 const Listado = ({ colaboradores, deleteItem }) => {
-  if (!colaboradores) return null;
-
   return (
-    <table className="table table-striped table-bordered text-center">
+    <Table responsive>
       <thead>
         <tr>
           <th>ID</th>
@@ -32,7 +31,7 @@ const Listado = ({ colaboradores, deleteItem }) => {
           </tr>
         ))}
       </tbody>
-    </table>
+    </Table>
   );
 };
 

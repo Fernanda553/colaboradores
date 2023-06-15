@@ -1,12 +1,16 @@
 import { useState } from "react";
 
-const Formulario = ({ colaboradores, setAlerta }) => {
+const EMAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+const NAME_REGEX = /^[\w\s]+ [\w\s]+$/;
+const TELEFONO_REGEX = /^\+569\d{8}$/;
+
+const Formulario = ({ agregarColaborador, setAlerta }) => {
   const [nuevoColaborador, setNuevoColaborador] = useState({
-    nombre: "",
-    correo: "",
-    edad: "",
-    cargo: "",
-    telefono: "",
+    nombre: "fernanda nunez",
+    correo: "fernanda.nunez55@gmail.com",
+    edad: "28",
+    cargo: "informatica",
+    telefono: "+56937586219",
   });
 
   const handleChange = (e) => {
@@ -18,17 +22,22 @@ const Formulario = ({ colaboradores, setAlerta }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    for (let key in nuevoColaborador) {
-      if (nuevoColaborador[key] === "") {
-        setAlerta({
-          mensaje:
-            "Para agregar colaborador ingrese todos los datos solicitados",
-          tipo: "warning",
-        });
-        return;
-      }
+
+    if (
+      !nuevoColaborador.nombre.trim() ||
+      !nuevoColaborador.correo.trim() ||
+      !nuevoColaborador.edad.trim() ||
+      !nuevoColaborador.cargo.trim() ||
+      !nuevoColaborador.telefono.trim()
+    ) {
+      setAlerta({
+        mensaje: "Para agregar colaborador ingrese todos los datos solicitados",
+        tipo: "warning",
+      });
+      return;
     }
-    if (!/^[\w\s]+ [\w\s]+$/.test(nuevoColaborador.nombre)) {
+
+    if (!NAME_REGEX.test(nuevoColaborador.nombre)) {
       setAlerta({
         mensaje: "El nombre debe contener al menos un nombre y un apellido",
         tipo: "danger",
@@ -36,11 +45,7 @@ const Formulario = ({ colaboradores, setAlerta }) => {
       return;
     }
 
-    if (
-      !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
-        nuevoColaborador.correo
-      )
-    ) {
+    if (!EMAIL_REGEX.test(nuevoColaborador.correo)) {
       setAlerta({
         mensaje: "Ingrese un correo válido",
         tipo: "danger",
@@ -48,7 +53,7 @@ const Formulario = ({ colaboradores, setAlerta }) => {
       return;
     }
 
-    if (!/^\+569\d{8}$/.test(nuevoColaborador.telefono)) {
+    if (!TELEFONO_REGEX.test(nuevoColaborador.telefono)) {
       setAlerta({
         mensaje: "Ingrese un teléfono válido (ej: +56912345678)",
         tipo: "danger",
@@ -56,10 +61,8 @@ const Formulario = ({ colaboradores, setAlerta }) => {
       return;
     }
 
-    colaboradores.push({
-      id: (colaboradores.length + 1).toString(),
-      ...nuevoColaborador,
-    });
+    agregarColaborador(nuevoColaborador);
+
     setNuevoColaborador({
       nombre: "",
       correo: "",

@@ -9,32 +9,47 @@ import BaseColaboradores from "./BaseColaboradores";
 
 const App = () => {
   const [colaboradores, setColaboradores] = useState(BaseColaboradores);
-  const [colaboradoresFiltrados, setColaboradoresFiltrados] =
-    useState(BaseColaboradores);
   const [alerta, setAlerta] = useState({ mensaje: "", tipo: "" });
+  const [terminoBusqueda, setTerminoBusqueda] = useState("");
 
   const agregarColaborador = (colaborador) => {
+    colaborador.id = +colaboradores[colaboradores.length - 1].id + 1;
     setColaboradores([...colaboradores, colaborador]);
-    setColaboradoresFiltrados([...colaboradores, colaborador]);
   };
 
   const deleteItem = (id) => {
     const listFilter = colaboradores.filter(
       (colaborador) => colaborador.id !== id
     );
-    setColaboradoresFiltrados(listFilter);
+    setColaboradores(listFilter);
   };
+  const handlerTerminoBusqueda = (e) => {
+    setTerminoBusqueda(e.target.value);
+  };
+  const filterOfColaboradores = colaboradores.filter(
+    (colabodador) =>
+      colabodador.nombre
+        .toLowerCase()
+        .includes(terminoBusqueda.toLowerCase()) ||
+      colabodador.correo
+        .toLowerCase()
+        .includes(terminoBusqueda.toLowerCase()) ||
+      colabodador.edad.toLowerCase().includes(terminoBusqueda.toLowerCase()) ||
+      colabodador.cargo.toLowerCase().includes(terminoBusqueda.toLowerCase()) ||
+      colabodador.telefono.toLowerCase().includes(terminoBusqueda.toLowerCase())
+  );
+
   return (
     <div className="container-none px-4">
       <h1 className="text-center p-3">Lista de colaboradores</h1>
       <Buscador
-        colaboradores={colaboradores}
-        setColaboradoresFiltrados={setColaboradoresFiltrados}
+        terminoBusqueda={terminoBusqueda}
+        onChanges={handlerTerminoBusqueda}
       />
       <div className="row">
         <div className="col-lg-8 col-12">
           <Listado
-            colaboradores={colaboradoresFiltrados}
+            colaboradores={filterOfColaboradores}
             deleteItem={deleteItem}
             data-spy="scroll"
           />
